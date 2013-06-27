@@ -1,8 +1,11 @@
 package org.knight.kenobi.myenglish.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -36,7 +39,7 @@ public class Unit {
 	/**
 	 * Название
 	 */
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "Name", nullable = false)
 	@NotNull
 	@NotEmpty
@@ -45,7 +48,7 @@ public class Unit {
 	/**
 	 * Аудиозаписи
 	 */
-	@OneToMany(mappedBy = "unit")
+	@OneToMany(mappedBy = "unit", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Tapescript> tapescripts;
 	
 	/**
@@ -88,6 +91,11 @@ public class Unit {
 	 */
 	public List<Tapescript> getTapescripts(){
 		return tapescripts;
+	}
+	
+	
+	public Unit() {
+		tapescripts = new ArrayList<Tapescript>();
 	}
 	
 	/**

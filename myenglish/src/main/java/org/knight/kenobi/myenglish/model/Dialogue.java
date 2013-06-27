@@ -1,8 +1,11 @@
 package org.knight.kenobi.myenglish.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +38,7 @@ public class Dialogue {
 	@Column(name = "DialogueId")
 	private short dialogueId;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "Name")
 	@NotNull
 	@NotEmpty
@@ -53,13 +56,13 @@ public class Dialogue {
 	/**
 	 * Реплики учатников диалога
 	 */
-	@OneToMany(mappedBy = "dialogue")
+	@OneToMany(mappedBy = "dialogue", cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	private List<Replica> replics;
 	
 	/**
 	 * Лица участвующие в диалоге
 	 */
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinTable(name = "DialoguePersons",
 			   joinColumns = @JoinColumn(name = "DialogueId"),
 			   inverseJoinColumns = @JoinColumn(name = "PersonName"))
@@ -114,6 +117,12 @@ public class Dialogue {
 	 */
 	public List<Person> getPersons() {
 		return persons;
+	}
+	
+
+	public Dialogue() {
+		replics = new ArrayList<Replica>();
+		persons = new ArrayList<Person>();
 	}
 
 	/**

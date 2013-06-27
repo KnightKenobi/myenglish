@@ -31,7 +31,7 @@ public class UnitRegistrationTest {
 				.create(WebArchive.class, "test.war")
 				.addClasses(Resources.class, UnitRegistration.class,
 						Unit.class, Tapescript.class, Dialogue.class,
-						Replica.class, Sentence.class)
+						Replica.class, Sentence.class, Person.class)
 				.addAsResource("META-INF/test-persistence.xml",
 						"META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
@@ -48,6 +48,7 @@ public class UnitRegistrationTest {
 	@Test
 	public void testRegister() {
 		Person personA = Person.Create("A");
+		
 		Unit unit = Unit.Create((short) 9, Sentence.Create("I love Chicago",
 				"Я люблю Чикаго"), Tapescript.Create(9.1F, Sentence.Create(
 				"Getting around", "На транспорте"), "23 9.1.mp3", Dialogue
@@ -55,6 +56,7 @@ public class UnitRegistrationTest {
 						new Person[] { personA, Person.Create("B") },
 						Replica.Create(personA,
 								Sentence.Create("Hi.", "Привет.")))));
+		//Unit unit = new Unit();
 		unitRegistration.register(unit);
 		assertNotNull(unit.getUnitNumber());
 	}

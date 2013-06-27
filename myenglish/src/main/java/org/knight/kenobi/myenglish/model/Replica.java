@@ -1,8 +1,11 @@
 package org.knight.kenobi.myenglish.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +48,7 @@ public class Replica {
 	/**
 	 * Лицо произнёсшее реплику
 	 */
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "PersonName", nullable = false)
 	@NotNull
 	@NotEmpty
@@ -54,7 +57,7 @@ public class Replica {
 	/**
 	 * Предложения
 	 */
-	@OneToMany(mappedBy = "replica")
+	@OneToMany(mappedBy = "replica", cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	private List<Sentence> sentences;
 
 	/**
@@ -99,6 +102,10 @@ public class Replica {
 	 */
 	public List<Sentence> getSentences() {
 		return sentences;
+	}
+	
+	public Replica(){
+		sentences = new ArrayList<Sentence>();
 	}
 
 	/**

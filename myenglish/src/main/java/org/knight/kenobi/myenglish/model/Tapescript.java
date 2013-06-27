@@ -3,9 +3,12 @@
  */
 package org.knight.kenobi.myenglish.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,7 +40,7 @@ public class Tapescript {
 	/**
 	 * Название 
 	 */
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "Name")
 	@NotNull
 	@NotEmpty
@@ -63,7 +66,7 @@ public class Tapescript {
 	/**
 	 * Диалоги
 	 */
-	@OneToMany(mappedBy = "tapescript")
+	@OneToMany(mappedBy = "tapescript", cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	private List<Dialogue> dialogues;
 
 	/**
@@ -131,6 +134,11 @@ public class Tapescript {
 	 */
 	public List<Dialogue> getDialogues() {
 		return dialogues;
+	}
+	
+	
+	public Tapescript() {
+		dialogues = new ArrayList<Dialogue>();
 	}
 	
 	/**
