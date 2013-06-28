@@ -41,8 +41,8 @@ public class Unit {
 	 */
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "Name", nullable = false)
-	@NotNull
-	@NotEmpty
+	//@NotNull
+	//@NotEmpty
 	private Sentence name;
 	
 	/**

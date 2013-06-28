@@ -42,8 +42,8 @@ public class Tapescript {
 	 */
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "Name")
-	@NotNull
-	@NotEmpty
+	//@NotNull
+	//@NotEmpty
 	private Sentence name;
 	
 	/**

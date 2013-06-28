@@ -41,8 +41,8 @@ public class Replica {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "DialogueId")
-	@NotNull
-	@NotEmpty
+	//@NotNull
+	//@NotEmpty
     private Dialogue dialogue;
 	
 	/**
@@ -50,8 +50,8 @@ public class Replica {
 	 */
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "PersonName", nullable = false)
-	@NotNull
-	@NotEmpty
+	//@NotNull
+	//@NotEmpty
 	private Person person;
 	
 	/**

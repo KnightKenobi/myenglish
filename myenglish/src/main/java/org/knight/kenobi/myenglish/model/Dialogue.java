@@ -40,17 +40,16 @@ public class Dialogue {
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
 	@JoinColumn(name = "Name")
-	@NotNull
-	@NotEmpty
+	//@NotNull
+	//@NotEmpty
 	private Sentence name;
 	
 	/**
 	 * Аудиозапись
 	 */
 	@ManyToOne
-	@JoinColumn(name = "TapescriptNumber",
-	            nullable = false)
-	@NotNull
+	@JoinColumn(name = "TapescriptNumber")
+	//@NotNull
 	private Tapescript tapescript;
 	
 	/**

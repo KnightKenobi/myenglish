@@ -42,8 +42,8 @@ public class Sentence {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "replicaId")
-	@NotNull
-	@NotEmpty
+	//@NotNull
+	//@NotEmpty
 	private Replica replica;
 
 	/**
