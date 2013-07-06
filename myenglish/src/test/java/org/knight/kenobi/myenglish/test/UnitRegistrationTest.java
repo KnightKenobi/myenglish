@@ -1,7 +1,7 @@
 package org.knight.kenobi.myenglish.test;
 
 import static org.junit.Assert.assertNotNull;
-
+import static org.junit.Assert.assertNull;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -47,8 +47,7 @@ public class UnitRegistrationTest {
 
 	@Test
 	public void testRegister() {
-		Person personA = Person.Create("A");
-		
+		Person personA = Person.Create("A");		
 		Unit unit = Unit.Create((short) 9, Sentence.Create("I love Chicago",
 				"Я люблю Чикаго"), Tapescript.Create(9.1F, Sentence.Create(
 				"Getting around", "На транспорте"), "23 9.1.mp3", Dialogue
@@ -58,6 +57,8 @@ public class UnitRegistrationTest {
 								Sentence.Create("Hi.", "Привет.")))));
 		//Unit unit = new Unit();
 		unitRegistration.register(unit);
+		Unit unit2 = unitRegistration.load(unit.getUnitNumber());
 		assertNotNull(unit.getUnitNumber());
+		//assertNull(unit2.getTapescripts().get(0)));
 	}
 }
